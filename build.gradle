@@ -1,0 +1,57 @@
+
+def javaVersion = JavaVersion.VERSION_1_8;
+
+buildscript {
+	ext {
+		springBootVersion = '2.0.0.M7'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+jar {
+	baseName = 'ahits'
+	version = null
+}
+
+sourceCompatibility = javaVersion
+targetCompatibility = javaVersion
+
+task enforceVersion(){
+	doLast{
+		def foundVersion = JavaVersion.current();
+		if (foundVersion != javaVersion)
+			throw new IllegalStateException("Wrong Java version; required is "
+				+ javaVersion + ", but found " + foundVersion);
+	}
+}
+
+compileJava.dependsOn(enforceVersion);
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile 'mysql:mysql-connector-java'
+	
+}
+
+

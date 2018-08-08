@@ -1,0 +1,121 @@
+
+create database ahi_db;
+
+create user 'ahi_admin'@'localhost' identified by 'ahi_admin'; 
+
+ grant all on ahi_db.* to 'ahi_admin'@'localhost'; 
+ 
+ use ahi_db;
+ 
+ CREATE TABLE `ahi_user` (
+  `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,  
+  `active` bit(1) NOT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `login_id` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `when_created` datetime DEFAULT NULL,
+  `when_updated` datetime DEFAULT NULL,
+  `who_created` varchar(255) DEFAULT NULL,
+  `who_updated` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+)  DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `ahi_db`.`ahi_user`
+(`user_id`,
+`active`,
+`first_name`,
+`last_name`,
+`login_id`,
+`password`,
+`email`,
+`when_created`,
+`when_updated`,
+`who_created`,
+`who_updated`)
+VALUES
+(null,
+true,
+'Surjit',
+'Konjengbam',
+'ssingh',
+'test',
+'surjit.konjengbam@gmail.com',
+sysdate(),
+sysdate(),
+'admin',
+'admin');
+
+
+
+CREATE TABLE `ahi_security_group` (
+  `security_group_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,  
+  `security_group_code` varchar(255) DEFAULT NULL,
+  `security_group_name` varchar(255) DEFAULT NULL,
+  `when_created` datetime DEFAULT NULL,
+  `when_updated` datetime DEFAULT NULL,
+  `who_created` varchar(255) DEFAULT NULL,
+  `who_updated` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`security_group_id`)
+) DEFAULT CHARSET=utf8;
+
+INSERT INTO `ahi_db`.`ahi_security_group`
+(`security_group_id`,
+`security_group_code`,
+`security_group_name`)
+VALUES
+(null,
+'ADMIN',
+'Admin User');
+
+INSERT INTO `ahi_db`.`ahi_security_group`
+(`security_group_id`,
+`security_group_code`,
+`security_group_name`)
+VALUES
+(null,
+'MANAGER',
+'Manager User');
+
+
+
+INSERT INTO `ahi_db`.`ahi_security_group`
+(`security_group_id`,
+`security_group_code`,
+`security_group_name`)
+VALUES
+(null,
+'USER',
+'Normal User');
+
+
+CREATE TABLE `ahi_db`.`ahi_user_security_group` (
+  `security_group_id` INT UNSIGNED NOT NULL,
+  `user_id` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`user_id`, `security_group_id`),
+  INDEX `id_idx` (`user_id` ASC),
+  CONSTRAINT `id1`
+    FOREIGN KEY (`security_group_id`)
+    REFERENCES `ahi_db`.`ahi_security_group` (`security_group_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id2`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `ahi_db`.`ahi_user` (`user_id`)
+    ON DELETE CASCADE 
+    ON UPDATE NO ACTION);
+
+
+
+INSERT INTO `ahi_db`.`ahi_user_security_group`
+(`security_group_id`,
+`user_id`)
+VALUES
+(1,
+1);
+
+
+
+commit;
