@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ahi.AHCustomException;
+import com.ahi.model.ProjectsModel;
+import com.ahi.model.TasksModel;
 import com.ahi.model.TimesheetModel;
 import com.ahi.service.TimesheetService;
 
@@ -32,23 +34,27 @@ public class TimesheetController {
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<TimesheetModel> saveTimesheet(@RequestBody TimesheetModel tm, Principal principal)
+	public ResponseEntity<List<TimesheetModel>> saveTimesheet(@RequestBody List<TimesheetModel> tms, Principal principal)
 			throws Exception {
 		
 		try {
-			if (tm.getId() == null || tm.getId() == 0)
-				tm = timesheetService.addTimesheet(tm);
-			else
-				tm = timesheetService.updateTimesheet(tm);
+			for (TimesheetModel tm : tms) {
+				if (tm.getId() == null || tm.getId() == 0)
+					tm = timesheetService.addTimesheet(tm);
+				else
+					tm = timesheetService.updateTimesheet(tm);
+			}
+			
 		} catch (AHCustomException e) {
 			throw new WebServerException(e.getErrorMessage(), e);
 		}
-		return new ResponseEntity<TimesheetModel>(tm, HttpStatus.OK);
+		return new ResponseEntity<List<TimesheetModel>>(tms, HttpStatus.OK);
 	}
+	
 
-	@RequestMapping(value = "/timesheet/fetchData/{empId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@RequestMapping(value = "/fetchData/{empId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<TimesheetModel>> findAllData(@PathVariable Integer empId, Principal principal) {
-		
 		try {
 			List<TimesheetModel> models = timesheetService.getAllDatas(empId);
 			return new ResponseEntity<List<TimesheetModel>>(models, HttpStatus.OK);
@@ -56,6 +62,30 @@ public class TimesheetController {
 			throw new WebServerException(e.getErrorMessage(), e);
 		}
 
+	}
+	
+	//------------------------------getProjectData------------------------------------------
+	@RequestMapping(value = "/projectData/{empId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
+	public  ResponseEntity<List<ProjectsModel>> getProjectData(@PathVariable Integer empId) {
+		try {
+			List<ProjectsModel> models = timesheetService.getProjectData(empId);
+			return new ResponseEntity<List<ProjectsModel>>(models, HttpStatus.OK);
+		}
+		catch(AHCustomException e) {
+			throw new WebServerException(e.getErrorMessage(), e);
+		}
+	}
+	
+	//----------------------------------getTaskData--------------------------------------
+	@RequestMapping(value = "/taskData/{empId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
+	public  ResponseEntity<List<TasksModel>> getTaskData(@PathVariable Integer empId) {
+		try {
+			List<TasksModel> models = timesheetService.getTaskData(empId);
+			return new ResponseEntity<List<TasksModel>>(models, HttpStatus.OK);
+		}
+		catch(AHCustomException e) {
+			throw new WebServerException(e.getErrorMessage(), e);
+		}
 	}
 
 
