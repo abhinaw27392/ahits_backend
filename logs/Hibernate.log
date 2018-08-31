@@ -2132,3 +2132,94 @@
 2018-08-08 15:20:25,000 DEBUG [main] o.h.v.i.e.ValidatorFactoryImpl [ValidatorFactoryImpl.java:608] HV000234: Using org.springframework.validation.beanvalidation.LocalValidatorFactoryBean$1 as ValidatorFactory-scoped parameter name provider.
 2018-08-08 15:20:25,000 DEBUG [main] o.h.v.i.e.ValidatorFactoryImpl [ValidatorFactoryImpl.java:609] HV000234: Using org.hibernate.validator.internal.engine.DefaultClockProvider as ValidatorFactory-scoped clock provider.
 2018-08-08 15:20:25,000 DEBUG [main] o.h.v.i.e.ValidatorFactoryImpl [ValidatorFactoryImpl.java:610] HV000234: Using org.hibernate.validator.internal.engine.scripting.DefaultScriptEvaluatorFactory as ValidatorFactory-scoped script evaluator factory.
+2018-08-08 15:24:02,290 DEBUG [http-nio-6090-exec-9] o.h.q.c.i.CriteriaQueryImpl [CriteriaQueryImpl.java:307] Rendered criteria query -> select generatedAlias0 from AhiUser as generatedAlias0 where upper(generatedAlias0.loginId)=upper(:param0)
+2018-08-08 15:24:02,311 DEBUG [http-nio-6090-exec-9] o.h.h.i.QueryTranslatorFactoryInitiator [QueryTranslatorFactoryInitiator.java:45] QueryTranslatorFactory : org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory@702e379
+2018-08-08 15:24:02,312 INFO [http-nio-6090-exec-9] o.h.h.i.QueryTranslatorFactoryInitiator [QueryTranslatorFactoryInitiator.java:47] HHH000397: Using ASTQueryTranslatorFactory
+2018-08-08 15:24:02,358 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.QueryTranslatorImpl [QueryTranslatorImpl.java:282] parse() - HQL: select generatedAlias0 from com.ahi.entity.AhiUser as generatedAlias0 where upper(generatedAlias0.loginId)=upper(:param0)
+2018-08-08 15:24:02,368 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.ErrorCounter [ErrorCounter.java:95] throwQueryException() : no errors
+2018-08-08 15:24:02,374 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.QueryTranslatorImpl [QueryTranslatorImpl.java:305] --- HQL AST ---
+ \-[QUERY] Node: 'query'
+    +-[SELECT_FROM] Node: 'SELECT_FROM'
+    |  +-[FROM] Node: 'from'
+    |  |  \-[RANGE] Node: 'RANGE'
+    |  |     +-[DOT] Node: '.'
+    |  |     |  +-[DOT] Node: '.'
+    |  |     |  |  +-[DOT] Node: '.'
+    |  |     |  |  |  +-[IDENT] Node: 'com'
+    |  |     |  |  |  \-[IDENT] Node: 'ahi'
+    |  |     |  |  \-[IDENT] Node: 'entity'
+    |  |     |  \-[IDENT] Node: 'AhiUser'
+    |  |     \-[ALIAS] Node: 'generatedAlias0'
+    |  \-[SELECT] Node: 'select'
+    |     \-[IDENT] Node: 'generatedAlias0'
+    \-[WHERE] Node: 'where'
+       \-[EQ] Node: '='
+          +-[METHOD_CALL] Node: '('
+          |  +-[IDENT] Node: 'upper'
+          |  \-[EXPR_LIST] Node: 'exprList'
+          |     \-[DOT] Node: '.'
+          |        +-[IDENT] Node: 'generatedAlias0'
+          |        \-[IDENT] Node: 'loginId'
+          \-[METHOD_CALL] Node: '('
+             +-[IDENT] Node: 'upper'
+             \-[EXPR_LIST] Node: 'exprList'
+                \-[COLON] Node: ':'
+                   \-[IDENT] Node: 'param0'
+
+2018-08-08 15:24:02,418 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.HqlSqlBaseWalker [HqlSqlBaseWalker.java:124] select << begin [level=1, statement=select]
+2018-08-08 15:24:02,700 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.t.FromElement [FromElement.java:147] FromClause{level=1} : com.ahi.entity.AhiUser (generatedAlias0) -> ahiuser0_
+2018-08-08 15:24:02,702 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.t.FromReferenceNode [FromReferenceNode.java:60] Resolved : generatedAlias0 -> ahiuser0_.user_id
+2018-08-08 15:24:02,709 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.t.FromReferenceNode [FromReferenceNode.java:60] Resolved : generatedAlias0 -> ahiuser0_.user_id
+2018-08-08 15:24:02,710 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.t.DotNode [DotNode.java:666] getDataType() : loginId -> org.hibernate.type.StringType@21e360a
+2018-08-08 15:24:02,712 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.t.FromReferenceNode [FromReferenceNode.java:60] Resolved : generatedAlias0.loginId -> ahiuser0_.login_id
+2018-08-08 15:24:02,715 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.HqlSqlBaseWalker [HqlSqlBaseWalker.java:128] select : finishing up [level=1, statement=select]
+2018-08-08 15:24:02,715 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.HqlSqlWalker [HqlSqlWalker.java:747] processQuery() :  ( SELECT ( {select clause} ahiuser0_.user_id ) ( FromClause{level=1} ahi_user ahiuser0_ ) ( where ( = ( ( upper ( exprList ( ahiuser0_.login_id ahiuser0_.user_id loginId ) ) ) ( ( upper ( exprList ? ) ) ) ) )
+2018-08-08 15:24:02,728 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.u.JoinProcessor [JoinProcessor.java:192] Using FROM fragment [ahi_user ahiuser0_]
+2018-08-08 15:24:02,729 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.HqlSqlBaseWalker [HqlSqlBaseWalker.java:132] select >> end [level=1, statement=select]
+2018-08-08 15:24:02,730 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.QueryTranslatorImpl [QueryTranslatorImpl.java:269] --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (ahi_user)
+    +-[SELECT_CLAUSE] SelectClause: '{select clause}'
+    |  +-[ALIAS_REF] IdentNode: 'ahiuser0_.user_id as user_id1_5_' {alias=generatedAlias0, className=com.ahi.entity.AhiUser, tableAlias=ahiuser0_}
+    |  \-[SQL_TOKEN] SqlFragment: 'ahiuser0_.active as active2_5_, ahiuser0_.designation as designat3_5_, ahiuser0_.dob as dob4_5_, ahiuser0_.email as email5_5_, ahiuser0_.first_name as first_na6_5_, ahiuser0_.joining_date as joining_7_5_, ahiuser0_.last_name as last_nam8_5_, ahiuser0_.login_id as login_id9_5_, ahiuser0_.password as passwor10_5_, ahiuser0_.role as role11_5_, ahiuser0_.supervisor_id as supervi12_5_, ahiuser0_.when_created as when_cr13_5_, ahiuser0_.when_updated as when_up14_5_, ahiuser0_.who_created as who_cre15_5_, ahiuser0_.who_updated as who_upd16_5_'
+    +-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[generatedAlias0], fromElementByTableAlias=[ahiuser0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'ahi_user ahiuser0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=generatedAlias0,role=null,tableName=ahi_user,tableAlias=ahiuser0_,origin=null,columns={,className=com.ahi.entity.AhiUser}}
+    \-[WHERE] SqlNode: 'where'
+       \-[EQ] BinaryLogicOperatorNode: '='
+          +-[METHOD_CALL] MethodNode: '('
+          |  +-[METHOD_NAME] IdentNode: 'upper' {originalText=upper}
+          |  \-[EXPR_LIST] SqlNode: 'exprList'
+          |     \-[DOT] DotNode: 'ahiuser0_.login_id' {propertyName=loginId,dereferenceType=PRIMITIVE,getPropertyPath=loginId,path=generatedAlias0.loginId,tableAlias=ahiuser0_,className=com.ahi.entity.AhiUser,classAlias=generatedAlias0}
+          |        +-[ALIAS_REF] IdentNode: 'ahiuser0_.user_id' {alias=generatedAlias0, className=com.ahi.entity.AhiUser, tableAlias=ahiuser0_}
+          |        \-[IDENT] IdentNode: 'loginId' {originalText=loginId}
+          \-[METHOD_CALL] MethodNode: '('
+             +-[METHOD_NAME] IdentNode: 'upper' {originalText=upper}
+             \-[EXPR_LIST] SqlNode: 'exprList'
+                \-[NAMED_PARAM] ParameterNode: '?' {name=param0, expectedType=null}
+
+2018-08-08 15:24:02,730 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.ErrorCounter [ErrorCounter.java:95] throwQueryException() : no errors
+2018-08-08 15:24:02,740 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.QueryTranslatorImpl [QueryTranslatorImpl.java:251] HQL: select generatedAlias0 from com.ahi.entity.AhiUser as generatedAlias0 where upper(generatedAlias0.loginId)=upper(:param0)
+2018-08-08 15:24:02,740 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.QueryTranslatorImpl [QueryTranslatorImpl.java:252] SQL: select ahiuser0_.user_id as user_id1_5_, ahiuser0_.active as active2_5_, ahiuser0_.designation as designat3_5_, ahiuser0_.dob as dob4_5_, ahiuser0_.email as email5_5_, ahiuser0_.first_name as first_na6_5_, ahiuser0_.joining_date as joining_7_5_, ahiuser0_.last_name as last_nam8_5_, ahiuser0_.login_id as login_id9_5_, ahiuser0_.password as passwor10_5_, ahiuser0_.role as role11_5_, ahiuser0_.supervisor_id as supervi12_5_, ahiuser0_.when_created as when_cr13_5_, ahiuser0_.when_updated as when_up14_5_, ahiuser0_.who_created as who_cre15_5_, ahiuser0_.who_updated as who_upd16_5_ from ahi_user ahiuser0_ where upper(ahiuser0_.login_id)=upper(?)
+2018-08-08 15:24:02,740 DEBUG [http-nio-6090-exec-9] o.h.h.i.a.ErrorCounter [ErrorCounter.java:95] throwQueryException() : no errors
+2018-08-08 15:24:02,807 DEBUG [http-nio-6090-exec-9] o.h.SQL [SqlStatementLogger.java:92] select ahiuser0_.user_id as user_id1_5_, ahiuser0_.active as active2_5_, ahiuser0_.designation as designat3_5_, ahiuser0_.dob as dob4_5_, ahiuser0_.email as email5_5_, ahiuser0_.first_name as first_na6_5_, ahiuser0_.joining_date as joining_7_5_, ahiuser0_.last_name as last_nam8_5_, ahiuser0_.login_id as login_id9_5_, ahiuser0_.password as passwor10_5_, ahiuser0_.role as role11_5_, ahiuser0_.supervisor_id as supervi12_5_, ahiuser0_.when_created as when_cr13_5_, ahiuser0_.when_updated as when_up14_5_, ahiuser0_.who_created as who_cre15_5_, ahiuser0_.who_updated as who_upd16_5_ from ahi_user ahiuser0_ where upper(ahiuser0_.login_id)=upper(?)
+2018-08-08 15:24:02,838 DEBUG [http-nio-6090-exec-9] o.h.l.Loader [DelegatingBasicLogger.java:384] Result set row: 0
+2018-08-08 15:24:02,846 DEBUG [http-nio-6090-exec-9] o.h.l.Loader [Loader.java:1533] Result row: EntityKey[com.ahi.entity.AhiUser#2]
+2018-08-08 15:24:02,863 DEBUG [http-nio-6090-exec-9] o.h.e.i.TwoPhaseLoad [TwoPhaseLoad.java:141] Resolving associations for [com.ahi.entity.AhiUser#2]
+2018-08-08 15:24:02,876 DEBUG [http-nio-6090-exec-9] o.h.e.i.TwoPhaseLoad [TwoPhaseLoad.java:281] Done materializing entity [com.ahi.entity.AhiUser#2]
+2018-08-08 15:24:03,063 DEBUG [http-nio-6090-exec-1] o.h.q.c.i.CriteriaQueryImpl [CriteriaQueryImpl.java:307] Rendered criteria query -> select generatedAlias0 from AhiUser as generatedAlias0 where upper(generatedAlias0.loginId)=upper(:param0)
+2018-08-08 15:24:03,065 DEBUG [http-nio-6090-exec-1] o.h.SQL [SqlStatementLogger.java:92] select ahiuser0_.user_id as user_id1_5_, ahiuser0_.active as active2_5_, ahiuser0_.designation as designat3_5_, ahiuser0_.dob as dob4_5_, ahiuser0_.email as email5_5_, ahiuser0_.first_name as first_na6_5_, ahiuser0_.joining_date as joining_7_5_, ahiuser0_.last_name as last_nam8_5_, ahiuser0_.login_id as login_id9_5_, ahiuser0_.password as passwor10_5_, ahiuser0_.role as role11_5_, ahiuser0_.supervisor_id as supervi12_5_, ahiuser0_.when_created as when_cr13_5_, ahiuser0_.when_updated as when_up14_5_, ahiuser0_.who_created as who_cre15_5_, ahiuser0_.who_updated as who_upd16_5_ from ahi_user ahiuser0_ where upper(ahiuser0_.login_id)=upper(?)
+2018-08-08 15:24:03,068 DEBUG [http-nio-6090-exec-1] o.h.l.Loader [DelegatingBasicLogger.java:384] Result set row: 0
+2018-08-08 15:24:03,069 DEBUG [http-nio-6090-exec-1] o.h.l.Loader [Loader.java:1533] Result row: EntityKey[com.ahi.entity.AhiUser#2]
+2018-08-08 15:24:03,070 DEBUG [http-nio-6090-exec-1] o.h.e.i.TwoPhaseLoad [TwoPhaseLoad.java:141] Resolving associations for [com.ahi.entity.AhiUser#2]
+2018-08-08 15:24:03,071 DEBUG [http-nio-6090-exec-1] o.h.e.i.TwoPhaseLoad [TwoPhaseLoad.java:281] Done materializing entity [com.ahi.entity.AhiUser#2]
+2018-08-08 15:24:03,116 DEBUG [http-nio-6090-exec-1] o.h.l.c.p.AbstractLoadPlanBasedCollectionInitializer [AbstractLoadPlanBasedCollectionInitializer.java:73] Loading collection: [com.ahi.entity.AhiUser.groups#2]
+2018-08-08 15:24:03,117 DEBUG [http-nio-6090-exec-1] o.h.SQL [SqlStatementLogger.java:92] select groups0_.user_id as user_id1_6_0_, groups0_.security_group_id as security2_6_0_, securitygr1_.security_group_id as security1_2_1_, securitygr1_.security_group_code as security2_2_1_, securitygr1_.security_group_name as security3_2_1_ from ahi_user_security_group groups0_ inner join ahi_security_group securitygr1_ on groups0_.security_group_id=securitygr1_.security_group_id where groups0_.user_id=?
+2018-08-08 15:24:03,122 DEBUG [http-nio-6090-exec-1] o.h.l.p.e.p.i.ResultSetProcessorImpl [ResultSetProcessorImpl.java:161] Preparing collection intializer : [com.ahi.entity.AhiUser.groups#2]
+2018-08-08 15:24:03,128 DEBUG [http-nio-6090-exec-1] o.h.e.l.i.CollectionLoadContext [DelegatingBasicLogger.java:394] 1 collections were found in result set for role: com.ahi.entity.AhiUser.groups
+2018-08-08 15:24:03,129 DEBUG [http-nio-6090-exec-1] o.h.e.l.i.CollectionLoadContext [CollectionLoadContext.java:265] Collection fully initialized: [com.ahi.entity.AhiUser.groups#2]
+2018-08-08 15:24:03,129 DEBUG [http-nio-6090-exec-1] o.h.e.l.i.CollectionLoadContext [DelegatingBasicLogger.java:394] 1 collections initialized for role: com.ahi.entity.AhiUser.groups
+2018-08-08 15:24:03,130 DEBUG [http-nio-6090-exec-1] o.h.r.j.i.ResourceRegistryStandardImpl [ResourceRegistryStandardImpl.java:84] HHH000387: ResultSet's statement was not registered
+2018-08-08 15:24:03,130 DEBUG [http-nio-6090-exec-1] o.h.l.c.p.AbstractLoadPlanBasedCollectionInitializer [AbstractLoadPlanBasedCollectionInitializer.java:105] Done loading collection
+2018-08-23 10:52:31,205 INFO [background-preinit] o.h.v.i.u.Version [Version.java:21] HV000001: Hibernate Validator 6.0.5.Final
+2018-08-23 10:52:31,367 DEBUG [background-preinit] o.h.v.i.e.r.TraversableResolvers [TraversableResolvers.java:93] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-08-23 10:52:31,375 DEBUG [background-preinit] o.h.v.i.e.r.TraversableResolvers [TraversableResolvers.java:103] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-08-23 10:52:31,382 DEBUG [background-preinit] o.h.v.i.e.r.TraversableResolvers [TraversableResolvers.java:109] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.

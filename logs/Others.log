@@ -7,3 +7,4 @@
 2018-08-08 15:20:25,997 INFO [main] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:179] Initializing ProtocolHandler ["http-nio-6090"]
 2018-08-08 15:20:26,018 INFO [main] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:179] Starting ProtocolHandler ["http-nio-6090"]
 2018-08-08 15:20:26,050 INFO [main] o.a.t.u.n.NioSelectorPool [DirectJDKLog.java:179] Using a shared selector for servlet write/read
+2018-08-08 15:23:53,633 INFO [http-nio-6090-exec-1] o.a.c.c.C.[.[.[/ahits] [DirectJDKLog.java:179] Initializing Spring FrameworkServlet 'dispatcherServlet'

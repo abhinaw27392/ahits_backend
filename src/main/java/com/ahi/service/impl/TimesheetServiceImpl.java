@@ -1,5 +1,6 @@
 package com.ahi.service.impl;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -63,9 +64,27 @@ public class TimesheetServiceImpl implements TimesheetService {
 	}
 
 	@Override
-	public List<TimesheetModel> getAllDatas(Integer empId) throws AHCustomException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<TimesheetModel> getAllDatas(Integer empId, Date fromDate, Date toDate) throws AHCustomException {
+		try  {
+			List<TimesheetModel> models = new ArrayList<>();
+			Iterable<AhiTimesheet> timesheet = timesheetRepository.findAllByempIdAndDateBetween(empId, fromDate, toDate);
+			Iterator<AhiTimesheet> iterator = timesheet.iterator();
+			while(iterator.hasNext()) {
+				TimesheetModel tsm = new TimesheetModel();
+				AhiTimesheet ts = iterator.next();
+				tsm.setId(ts.getId());
+				tsm.setEmpId(ts.getEmpId());
+				tsm.setProjectName(ts.getProjectName());
+				tsm.setTaskName(ts.getTaskName());
+				tsm.setDate(ts.getDate());
+				tsm.setTotalHours(ts.getTotalHours());
+				models.add(tsm);
+			}
+			return models;
+		}catch(Exception e) {
+			log.error("Error while getting AllDatas");
+			throw new AHCustomException("Error while getting AllDatas");
+		}
 	}
 	
 	@Override

@@ -1,5 +1,6 @@
 package com.ahi.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.ahi.AHCustomException;
@@ -13,7 +14,7 @@ public interface TimesheetService {
 
 	TimesheetModel updateTimesheet(TimesheetModel tm) throws AHCustomException;
 
-	List<TimesheetModel> getAllDatas(Integer empId) throws AHCustomException;
+	List<TimesheetModel> getAllDatas(Integer empId, Date fromDate, Date toDate) throws AHCustomException;
 
 	List<ProjectsModel> getProjectData(Integer empId) throws AHCustomException;
 
